@@ -200,7 +200,8 @@ class Query(BaseModel):
 
 @app.post("/")
 def researchAgent(query: Query):
-    query = query.query
-    content = agent({"input": query})
+    print(query)  # Add this line for debugging
+    research_query = query.query
+    content = agent({"input": research_query})
     actual_content = content['output']
     return actual_content
