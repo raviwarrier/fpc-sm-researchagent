@@ -89,9 +89,11 @@ def summary(objective, content):
     text_splitter = RecursiveCharacterTextSplitter(
         separators=["\n\n", "\n"], chunk_size=10000, chunk_overlap=500)
     docs = text_splitter.create_documents([content])
+    # changed the below prompt from "Summarize the ..." to "Clean up... and Do not Summarize... comprehensibility."
     map_prompt = """
-    Write a summary of the following text for {objective}:
+    Clean up and restructure the following text for {objective}:
     "{text}"
+    Do not Summarize or shorten the text. Just clean it up and restructure it for comprehensibility.
     SUMMARY:
     """
     map_prompt_template = PromptTemplate(
